@@ -37,6 +37,9 @@ namespace CleanArchMvc.Infra.IoC
                 cfg.AddProfile<DomainToDTOMappingProfile>();
             }).CreateMapper());
 
+            var myhandlers = AppDomain.CurrentDomain.Load("CleanArchMvc.Application");
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(myhandlers));
+
             return services;
         }
     }
