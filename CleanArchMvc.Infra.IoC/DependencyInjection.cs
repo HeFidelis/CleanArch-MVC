@@ -35,6 +35,7 @@ namespace CleanArchMvc.Infra.IoC
             services.AddSingleton(provider => new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<DomainToDTOMappingProfile>();
+                cfg.AddProfile<DTOToCommandMappingProfile>();
             }).CreateMapper());
 
             var myhandlers = AppDomain.CurrentDomain.Load("CleanArchMvc.Application");
