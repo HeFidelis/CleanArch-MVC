@@ -26,7 +26,7 @@ namespace CleanArchMvc.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            ViewBag.CategoryId = 
+            ViewBag.CategoryId =
                 new SelectList(await _categoryService.GetCategories(), "Id", "Name");
 
             return View();
@@ -38,6 +38,39 @@ namespace CleanArchMvc.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 await _productService.Add(productDto);
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                ViewBag.CategoryId =
+                    new SelectList(await _categoryService.GetCategories(), "Id", "Name", productDto.CategoryId);
+            }
+            return View(productDto);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var productDto = await _productService.GetById(id);
+
+            if (productDto == null)
+                return NotFound();
+
+            ViewBag.CategoryId =
+                new SelectList(await _categoryService.GetCategories(), "Id", "Name", productDto.CategoryId);
+
+            return View(productDto);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(ProductDTO productDto)
+        {
+            if (ModelState.IsValid)
+            {
+                await _productService.Update(productDto);
                 return RedirectToAction(nameof(Index));
             }
             else
