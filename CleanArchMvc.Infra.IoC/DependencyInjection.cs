@@ -32,11 +32,11 @@ namespace CleanArchMvc.Infra.IoC
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
 
-            services.AddSingleton(provider => new MapperConfiguration(cfg =>
+            services.AddAutoMapper(cfg =>
             {
                 cfg.AddProfile<DomainToDTOMappingProfile>();
                 cfg.AddProfile<DTOToCommandMappingProfile>();
-            }).CreateMapper());
+            });
 
             var myhandlers = AppDomain.CurrentDomain.Load("CleanArchMvc.Application");
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(myhandlers));
