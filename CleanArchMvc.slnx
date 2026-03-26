@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="CleanArchMvc.API/CleanArchMvc.API.csproj" Id="2f871441-428d-4bdc-a825-cf3883f174e2" />
   <Project Path="CleanArchMvc.Application/CleanArchMvc.Application.csproj" />
   <Project Path="CleanArchMvc.Domain.Tests/CleanArchMvc.Domain.Tests.csproj" Id="c59f4742-f569-4934-b72f-8b9e0461bab4" />
   <Project Path="CleanArchMvc.Domain/CleanArchMvc.Domain.csproj" />
