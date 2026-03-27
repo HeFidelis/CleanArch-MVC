@@ -1,4 +1,5 @@
 using CleanArchMvc.Infra.IoC;
+using Microsoft.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +9,7 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddInfrastructureAPI(builder.Configuration);
 builder.Services.AddInfrastructureJWT(builder.Configuration);
-builder.Services.AddSwaggerGen();
+builder.Services.AddInfrastructureSwagger();
 
 var app = builder.Build();
 
